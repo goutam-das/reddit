@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import { classToPlain, Exclude } from 'class-transformer';
-import { IsEmail, Length } from "class-validator";
-import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IsEmail, Length } from 'class-validator';
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity('users')
 export default class User extends BaseEntity {
