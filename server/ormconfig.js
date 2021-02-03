@@ -6,7 +6,7 @@ module.exports = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   entities: [
-    'build/**/**.entity.js',
+    'build/**/entity/**.js',
   ],
   migrations: [
     'build/database/migrations/*.js',

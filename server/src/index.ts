@@ -5,7 +5,10 @@ import { createConnection } from 'typeorm';
 import morgan from 'morgan';
 
 // Routes
-import authRoutes from './services/auth/routes/auth.route';
+import authRoutes from './services/auth/routes/auth';
+
+// Middlewares
+import trim from './middlewares/trim';
 
 (async () => {
 
@@ -17,7 +20,8 @@ import authRoutes from './services/auth/routes/auth.route';
         // Middlewares
         app.use(express.json());
         app.use(morgan('dev'));
-
+        app.use(trim);
+        
         // Routes
         app.use('/api', authRoutes);
 
@@ -27,7 +31,7 @@ import authRoutes from './services/auth/routes/auth.route';
 
         app.listen(process.env.PORT);
         console.log(`Server listen on port: ${process.env.PORT}`);
-        
+
     } catch (error) {
         console.error(error);
     }
