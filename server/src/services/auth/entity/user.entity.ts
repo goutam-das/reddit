@@ -1,4 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { IsEmail, Min } from "class-validator";
+import { BaseEntity, Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('users')
 export default class User extends BaseEntity {
@@ -10,13 +11,18 @@ export default class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Index()
+    @IsEmail()
     @Column({ unique: true })
     email: string;
-
+    
+    @Index()
+    @Min(3)
     @Column({ unique: true })
     username: string;
 
     @Column()
+    @Min(6)
     password: string;
 
     @CreateDateColumn()
