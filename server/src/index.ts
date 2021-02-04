@@ -1,13 +1,11 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { createConnection } from 'typeorm';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 
-// Routes
 import authRoutes from './services/auth/routes/auth';
-
-// Middlewares
 import trim from './middlewares/trim';
 
 (async () => {
@@ -20,12 +18,13 @@ import trim from './middlewares/trim';
         // Middlewares
         app.use(express.json());
         app.use(morgan('dev'));
+        app.use(cookieParser());
         app.use(trim);
-        
-        // Routes
-        app.use('/api', authRoutes);
 
-        app.get('/', (_: Request, res: Response) => {
+        // Routes
+        app.use('/api/auth', authRoutes);
+
+        app.get('/', (_, res) => {
             return res.send('Hello from Server');
         });
 
